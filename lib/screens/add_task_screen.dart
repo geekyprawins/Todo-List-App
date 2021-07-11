@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/widgets/tasks_list.dart';
 
 class AddTaskScreen extends StatelessWidget {
-
-
+  final Function addTaskCallback;
+  AddTaskScreen(this.addTaskCallback);
   @override
   Widget build(BuildContext context) {
+    late String newTaskTitle;
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -31,12 +33,21 @@ class AddTaskScreen extends StatelessWidget {
               autofocus: true,
               style: TextStyle(color: Colors.black54),
               decoration: InputDecoration(),
+              cursorColor: Colors.black54,
+              cursorHeight: 25,
+              cursorWidth: 2.0,
+              onChanged: (newText) {
+                newTaskTitle = newText;
+              },
             ),
             Padding(
               padding: EdgeInsets.only(top: 20.0),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                // add functionality
+                addTaskCallback(newTaskTitle);
+              },
               child: Text(
                 'Add',
                 style: TextStyle(
